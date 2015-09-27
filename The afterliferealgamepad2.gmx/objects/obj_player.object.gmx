@@ -173,15 +173,23 @@ if (key_shoot) &amp;&amp; ammo &gt; 0
 {
 ammo -= 1;
 
+// duck
 if (sprite_index = spr_player_duck) 
 {
 bullet = instance_create(x,y+7, obj_bullet);
 }
+// duck powerup
+else if (sprite_index = spr_player_duck_powerup &amp;&amp; image_xscale = -1)
+{
+bullet = instance_create (x-6,y+18,obj_bullet);
+}
+
 else if (sprite_index = spr_player_duck_powerup)
 {
 bullet = instance_create (x+6,y+18,obj_bullet);
 }
 
+//normal shooting all directions
 else if (obj_arm.direction == 0)
 {
 bullet = instance_create(x,y+4,obj_bullet);
@@ -203,7 +211,7 @@ else if (obj_arm.direction == 315 &amp;&amp; image_xscale = -1)
 {
 bullet = instance_create(x,y-1,obj_bullet); //left + up
 }
-
+//bullets settings
 bullet.direction = image_angle;
 bullet.image_angle = image_angle;
 bullet.speed = 15;
