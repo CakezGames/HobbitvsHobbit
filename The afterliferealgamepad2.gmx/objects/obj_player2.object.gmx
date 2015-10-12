@@ -34,6 +34,10 @@ movespeed = 4;
 ammo = 3;
 jumps = 0;
 jumpsmax = 2;
+rainbow = false;
+teleportgun = false;
+sniper = false;
+instance_create(x,y,obj_ammo2);
 
 duck_normal = spr_player_duck;
 duck_powerup = spr_player_duck_powerup;
@@ -62,8 +66,7 @@ gamepad_set_axis_deadzone(1,0.5);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>duck_normal=duck_normal;
-
+            <string>rainbow = false;
 </string>
           </argument>
         </arguments>
@@ -138,7 +141,7 @@ if (move!=0) sprite_index = spr_player_walking; else sprite_index = spr_player_i
 else
 
 {
-    if (vsp &lt; 0)
+    if (vsp != 0)
     {
      sprite_index = spr_player_jumping; 
      }
@@ -156,15 +159,23 @@ if (gamepad_button_check_released(1,gp_shoulderlb)) movespeed = 4;
 if (key_shoot) &amp;&amp; ammo &gt; 0
 {
 ammo -= 1;
+//duck
 if (sprite_index = spr_player_duck) 
 {
 bullet = instance_create(x,y+7, obj_bullet2);
 }
-else if (sprite_index = spr_player_duck_powerup)
+//duck powerup
+else if (sprite_index = spr_player_duck_powerup &amp;&amp; image_xscale = -1)
 {
-bullet = instance_create (x+6,y+18,obj_bullet2);
+bullet = instance_create (x-6,y+18,obj_bullet);
 }
 
+else if (sprite_index = spr_player_duck_powerup)
+{
+bullet = instance_create (x+6,y+18,obj_bullet);
+}
+
+//normal shooting all directions
 else if (obj_arm2.direction == 0)
 {
 bullet = instance_create(x,y+4,obj_bullet2);
@@ -202,6 +213,36 @@ if image_xscale = -1
 audio_play_sound(snd_shoot,0,0);
 }
 
+//visual ammo
+
+
+if ammo = 3
+{
+with obj_ammo2 image_index = 0;
+}
+
+if ammo = 2
+{
+with obj_ammo2 image_index = 1;
+}
+
+if ammo = 1
+{
+with obj_ammo2 image_index = 2;
+}
+
+if ammo = 0
+{
+with obj_ammo2 image_index = 3;
+}
+
+if ammo &gt; 3
+{
+ammo = 3;
+}
+
+obj_ammo2.x = x-3;
+obj_ammo2.y = y-40;
 
 
 
@@ -216,6 +257,29 @@ if (y &gt; room_height)
 
 if (y &lt; -sprite_height)
 { y = room_height; }
+
+
+
+//powerups and weapons
+
+if (teleportgun == true &amp;&amp; key_duck == true &amp;&amp; object_exists(obj_bullet))
+{
+x = obj_bullet2.x;
+y = obj_bullet2.y;
+}
+
+if rainbow = true
+{
+if image_xscale = 1
+{
+instance_create(x-12,y-18,obj_rainbow2);
+}
+
+else if image_xscale = -1
+{
+instance_create(x+12,y-18,obj_rainbow2);
+}
+}
 
 
 

@@ -42,7 +42,14 @@
     <sprite>sprites\spr_bullet_tilt</sprite>
     <sprite>sprites\spr_temple_wall</sprite>
     <sprite>sprites\sprite29</sprite>
+    <sprite>sprites\spr_ammo</sprite>
+    <sprite>sprites\spr_ammo_pickup_infinite</sprite>
+    <sprite>sprites\spr_ammo_pickup_1</sprite>
+    <sprite>sprites\spr_rainbow</sprite>
     <sprite>sprites\spr_powerup</sprite>
+    <sprite>sprites\spr_powerup2</sprite>
+    <sprite>sprites\spr_teleportgun</sprite>
+    <sprite>sprites\spr_sniper</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\Spreadsheet_1</background>
@@ -64,6 +71,10 @@
     <object>objects\obj_arm2</object>
     <object>objects\obj_bullet</object>
     <object>objects\obj_bullet2</object>
+    <object>objects\obj_ammo</object>
+    <object>objects\obj_ammo2</object>
+    <object>objects\obj_rainbow</object>
+    <object>objects\obj_rainbow2</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_ledge</object>
     <object>objects\obj_platoon_left</object>
@@ -80,6 +91,11 @@
     <object>objects\obj_menu</object>
     <object>objects\obj_functions</object>
     <object>objects\obj_powerup</object>
+    <object>objects\obj_sniper</object>
+    <object>objects\obj_teleportgun</object>
+    <object>objects\obj_powerup2</object>
+    <object>objects\obj_ammo_pickup_infinite</object>
+    <object>objects\obj_ammo_pickup_1</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_meny</room>

@@ -34,6 +34,11 @@ movespeed = 4;
 ammo = 3;
 jumps = 0;
 jumpsmax = 2;
+rainbow = false;
+teleportgun = false;
+sniper = false;
+
+instance_create(x,y,obj_ammo);
 
 duck_normal = spr_player_duck;
 duck_powerup = spr_player_duck_powerup;
@@ -62,7 +67,7 @@ gamepad_set_axis_deadzone(0,0.5);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>duck_normal = duck_normal;
+            <string>rainbow = false;
 </string>
           </argument>
         </arguments>
@@ -137,7 +142,7 @@ if (move!=0) sprite_index = spr_player_walking; else sprite_index = spr_player_i
 else
 
 {
-    if (vsp &lt; 0)
+    if (vsp != 0)
     {
      sprite_index = spr_player_jumping; 
     
@@ -225,7 +230,36 @@ if image_xscale = -1
 audio_play_sound(snd_shoot,0,0);
 }
 
+//visual ammo
 
+
+if ammo = 3
+{
+with obj_ammo image_index = 0;
+}
+
+if ammo = 2
+{
+with obj_ammo image_index = 1;
+}
+
+if ammo = 1
+{
+with obj_ammo image_index = 2;
+}
+
+if ammo = 0
+{
+with obj_ammo image_index = 3;
+}
+
+if ammo &gt; 3
+{
+ammo = 3;
+}
+
+obj_ammo.x = x-3;
+obj_ammo.y = y-40;
 
 //wrap room
 if (x &gt; room_width)
@@ -239,6 +273,36 @@ if (y &gt; room_height)
 
 if (y &lt; -sprite_height)
 { y = room_height; }
+
+
+
+//weapons and powerups
+if sniper == true
+{teleportgun = false;}
+
+if teleportgun ==  true
+{sniper = false;}
+
+if (teleportgun == true &amp;&amp; key_duck == true &amp;&amp; object_exists(obj_bullet))
+{
+x = obj_bullet.x;
+y = obj_bullet.y;
+}
+
+
+
+if rainbow = true
+{
+if image_xscale = 1
+{
+instance_create(x-12,y-18,obj_rainbow);
+}
+
+else if image_xscale = -1
+{
+instance_create(x+12,y-18,obj_rainbow);
+}
+}
 </string>
           </argument>
         </arguments>

@@ -113,6 +113,28 @@ obj_player2.image_xscale = 1;
 }
 
 
+if(right_down==false &amp;&amp; right_up==false &amp;&amp; right==false &amp;&amp; left_down==false &amp;&amp; left_up==false &amp;&amp; left==false)
+{
+direction=0;
+}
+
+// weapons
+if (obj_player2.teleportgun == true)
+{
+image_index = 1;
+}
+
+else
+{
+image_index = 0;
+}
+
+
+
+if (obj_player2.sniper == true)
+{
+image_index = 2;
+}
 
  
 </string>
